@@ -1,0 +1,25 @@
+.register-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    mat-form-field {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    p {
+        margin-top: 20px;
+    }
+}

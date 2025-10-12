@@ -1,0 +1,98 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Upload Resource</h2>
+          <form [formGroup]="uploadResourceForm" (ngSubmit)="onSubmit()">
+            <!-- Resource Title -->
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input
+                type="text"
+                id="title"
+                formControlName="title"
+                class="form-control"
+                placeholder="Enter resource title"
+              />
+              <div *ngIf="uploadResourceForm.get('title')?.invalid && uploadResourceForm.get('title')?.touched" class="text-danger">
+                Title is required.
+              </div>
+            </div>
+
+            <!-- Resource Type Dropdown -->
+            <div class="mb-3">
+              <label for="type" class="form-label">Resource Type</label>
+              <select
+                id="type"
+                formControlName="type"
+                class="form-select"
+                (change)="onResourceTypeChange($event)"
+              >
+                <option *ngFor="let type of resourceTypes" [value]="type">{{ type }}</option>
+              </select>
+            </div>
+
+            <!-- Dynamic Fields -->
+            <div *ngIf="selectedResourceType === 'file'" class="mb-3">
+              <label for="file" class="form-label">Upload Image</label>
+              <input
+                type="file"
+                id="file"
+                class="form-control"
+                (change)="onFileChange($event)"
+                accept="image/*"
+              />
+            </div>
+
+            <div *ngIf="selectedResourceType !== 'file'" class="mb-3">
+              <label for="link" class="form-label">Resource Link</label>
+              <input
+                type="url"
+                id="link"
+                formControlName="link"
+                class="form-control"
+                placeholder="Enter resource link"
+              />
+            </div>
+
+            <!-- Community Dropdown -->
+            <div class="mb-3">
+              <label for="communityId" class="form-label">Select Community</label>
+              <select
+                id="communityId"
+                formControlName="communityId"
+                class="form-select"
+              >
+                <option *ngFor="let community of communities" [value]="community._id">
+                  {{ community.name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Tags -->
+            <div class="mb-3">
+              <label for="tags" class="form-label">Tags (comma-separated)</label>
+              <input
+                type="text"
+                id="tags"
+                formControlName="tags"
+                class="form-control"
+                placeholder="Enter tags (e.g., react, frontend)"
+              />
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="btn btn-primary w-100"
+              [disabled]="uploadResourceForm.invalid"
+            >
+              Upload Resource
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

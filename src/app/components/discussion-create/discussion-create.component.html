@@ -1,0 +1,47 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Create Discussion</h2>
+            <form [formGroup]="createDiscussionForm" (ngSubmit)="onSubmit()">
+              <!-- Title -->
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  formControlName="title"
+                  class="form-control"
+                  placeholder="Enter discussion title"
+                />
+                <div *ngIf="createDiscussionForm.get('title')?.invalid && createDiscussionForm.get('title')?.touched" class="text-danger">
+                  Title is required.
+                </div>
+              </div>
+  
+              <!-- Content -->
+              <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea
+                  id="content"
+                  formControlName="content"
+                  class="form-control"
+                  placeholder="Enter discussion content"
+                  rows="5"
+                ></textarea>
+                <div *ngIf="createDiscussionForm.get('content')?.invalid && createDiscussionForm.get('content')?.touched" class="text-danger">
+                  Content is required.
+                </div>
+              </div>
+  
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary w-100" [disabled]="createDiscussionForm.invalid">
+                Create Discussion
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

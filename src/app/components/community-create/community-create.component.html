@@ -1,0 +1,180 @@
+<!-- <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Create Community</h2>
+          <form [formGroup]="createCommunityForm" (ngSubmit)="onSubmit()">
+            
+            <div class="mb-3">
+              <label for="name" class="form-label">Community Name</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control"
+                placeholder="Enter community name"
+              />
+              <div *ngIf="createCommunityForm.get('name')?.invalid && createCommunityForm.get('name')?.touched" class="text-danger">
+                Community name is required.
+              </div>
+            </div>
+
+            
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                class="form-control"
+                placeholder="Enter community description"
+                rows="3"
+              ></textarea>
+              <div *ngIf="createCommunityForm.get('description')?.invalid && createCommunityForm.get('description')?.touched" class="text-danger">
+                Description is required.
+              </div>
+            </div>
+
+            
+            <div class="mb-3">
+              <label class="form-label">Community Type</label>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="public"
+                  formControlName="isPublic"
+                  value="true"
+                />
+                <label class="form-check-label" for="public">Public</label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="private"
+                  formControlName="isPublic"
+                  value="false"
+                />
+                <label class="form-check-label" for="private">Private</label>
+              </div>
+            </div>
+
+           
+            <div class="mb-3">
+              <label for="banner" class="form-label">Community Banner</label>
+              <input
+                type="file"
+                id="banner"
+                class="form-control"
+                (change)="onFileChange($event)"
+                accept="image/*"
+              />
+            </div>
+
+            
+            <button
+              type="submit"
+              class="btn btn-primary w-100"
+              [disabled]="createCommunityForm.invalid"
+            >
+              {{ isBannerUploaded ? 'Create Community' : 'Upload Banner' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg border-0 rounded-4 hover-scale">
+        <div class="card-body p-5">
+          <h2 class="card-title text-center mb-4 text-gradient">Create Community</h2>
+          <form [formGroup]="createCommunityForm" (ngSubmit)="onSubmit()">
+            <!-- Community Name -->
+            <div class="mb-4">
+              <label for="name" class="form-label text-accent">Community Name</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control rounded-3 shadow-sm"
+                placeholder="Enter community name"
+              />
+              <div *ngIf="createCommunityForm.get('name')?.invalid && createCommunityForm.get('name')?.touched" class="text-danger mt-2">
+                Community name is required.
+              </div>
+            </div>
+
+            <!-- Community Description -->
+            <div class="mb-4">
+              <label for="description" class="form-label text-accent">Description</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                class="form-control rounded-3 shadow-sm"
+                placeholder="Enter community description"
+                rows="4"
+              ></textarea>
+              <div *ngIf="createCommunityForm.get('description')?.invalid && createCommunityForm.get('description')?.touched" class="text-danger mt-2">
+                Description is required.
+              </div>
+            </div>
+
+            <!-- Community Type -->
+            <div class="mb-4">
+              <label class="form-label text-accent">Community Type</label>
+              <div class="d-flex gap-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="public"
+                    formControlName="isPublic"
+                    value="true"
+                  />
+                  <label class="form-check-label" for="public">Public</label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="private"
+                    formControlName="isPublic"
+                    value="false"
+                  />
+                  <label class="form-check-label" for="private">Private</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Banner Upload -->
+            <div class="mb-4">
+              <label for="banner" class="form-label text-accent">Community Banner</label>
+              <input
+                type="file"
+                id="banner"
+                class="form-control rounded-3 shadow-sm"
+                (change)="onFileChange($event)"
+                accept="image/*"
+              />
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="btn btn-accent w-100 rounded-3 shadow-sm animate__animated animate__pulse"
+              [disabled]="createCommunityForm.invalid"
+            >
+              {{ isBannerUploaded ? 'Create Community' : 'Upload Banner' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

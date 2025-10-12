@@ -1,0 +1,90 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Update Community</h2>
+          <form [formGroup]="createCommunityForm" (ngSubmit)="onSubmit()">
+            <!-- Community Dropdown -->
+            <div class="mb-3">
+              <label for="communityId" class="form-label">Select Community</label>
+              <select
+                id="communityId"
+                class="form-select"
+                formControlName="communityId"
+              >
+                <option value="" disabled>Select a community</option>
+                <option *ngFor="let community of communities" [value]="community._id">
+                  {{ community.name }}
+                </option>
+              </select>
+              <div *ngIf="createCommunityForm.get('communityId')?.invalid && createCommunityForm.get('communityId')?.touched" class="text-danger">
+                Community selection is required.
+              </div>
+            </div>
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control"
+                placeholder="Enter community name"
+              />
+              <div *ngIf="createCommunityForm.get('name')?.invalid && createCommunityForm.get('name')?.touched" class="text-danger">
+                Name is required.
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                class="form-control"
+                placeholder="Enter community description"
+                rows="3"
+              ></textarea>
+              <div *ngIf="createCommunityForm.get('description')?.invalid && createCommunityForm.get('description')?.touched" class="text-danger">
+                Description is required.
+              </div>
+            </div>
+
+            <!-- Public/Private Radio Buttons -->
+            <div class="mb-3">
+              <label class="form-label">Community Type</label>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="public"
+                  formControlName="isPublic"
+                  value="true"
+                />
+                <label class="form-check-label" for="public">Public</label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="private"
+                  formControlName="isPublic"
+                  value="false"
+                />
+                <label class="form-check-label" for="private">Private</label>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100" [disabled]="createCommunityForm.invalid">
+              Update Community
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

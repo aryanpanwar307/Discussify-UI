@@ -1,0 +1,32 @@
+/* Custom Styles for Community Details Component */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .card-text {
+    color: #6c757d;
+  }
+  
+  .badge {
+    font-size: 0.875rem;
+  }
+  
+  .btn-outline-primary {
+    border-radius: 5px;
+  }
+  
+  .list-group-item {
+    border: none;
+  }

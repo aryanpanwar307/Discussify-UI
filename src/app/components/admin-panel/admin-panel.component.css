@@ -1,0 +1,88 @@
+/* Admin Panel CSS */
+
+#main {
+  background: linear-gradient(135deg, #ecc6d6, #c3a3e6, #b6cbf0);
+  padding: 40px;
+}
+
+.section-box {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #ff7eb3, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ff7eb3, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hover-scale {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.fixed-card {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fixed-img {
+  height: 160px;
+  object-fit: cover;
+}
+
+.btn-primary, .btn-danger {
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.horizontal-scroll {
+  background-color: #f8f9fa;
+  display: flex;
+  overflow-x: auto;
+  padding: 30px;
+}
+
+.horizontal-scroll .card {
+  flex: 0 0 auto;
+  width: 18rem;
+  margin-right: 15px;
+}
+
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.bi {
+  margin-right: 5px;
+}
+
+.card-title{
+  color: #bb47bb;
+}

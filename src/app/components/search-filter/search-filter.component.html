@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Search</h2>
+
+  <!-- Search Box -->
+  <div class="mb-4" [formGroup]="searchForm">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search communities, discussions, and resources..."
+      formControlName="query"
+    />
+  </div>
+
+  <!-- Search Results -->
+  <div class="row">
+    <!-- Communities -->
+    <div class="col-md-4">
+      <h3 class="main" >Communities</h3>
+      <div *ngIf="filteredCommunities.length > 0; else noCommunities">
+        <div *ngFor="let community of filteredCommunities" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ community.name }}</h5>
+          </div>
+        </div>
+      </div>
+      <ng-template #noCommunities>
+        <p class="text-muted">No communities found.</p>
+      </ng-template>
+    </div>
+
+    <!-- Discussions -->
+    <div class="col-md-4">
+      <h3 class="main" >Discussions</h3>
+      <div *ngIf="filteredDiscussions.length > 0; else noDiscussions">
+        <div *ngFor="let discussion of filteredDiscussions" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ discussion.title }}</h5>
+          </div>
+        </div>
+      </div>
+      <ng-template #noDiscussions>
+        <p class="text-muted">No discussions found.</p>
+      </ng-template>
+    </div>
+
+    <!-- Resources -->
+    <div class="col-md-4">
+      <h3 class="main" >Resources</h3>
+      <div *ngIf="filteredResources.length > 0; else noResources">
+        <div *ngFor="let resource of filteredResources" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ resource.title }}</h5>
+            <p class="card-text">
+              Tags: {{ resource.tags.join(', ') }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <ng-template #noResources>
+        <p class="text-muted">No resources found.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

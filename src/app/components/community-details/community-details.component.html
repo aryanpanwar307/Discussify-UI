@@ -1,0 +1,85 @@
+<div class="container mt-5">
+  <!-- Community Details -->
+  <div *ngIf="community" class="mb-5">
+    <h2>{{ community.name }}</h2>
+    <p>{{ community.description }}</p>
+    <p><strong>Created By:</strong> {{ community.createdBy.username }}</p>
+    <p><strong>Status:</strong> {{ community.isPublic ? 'Public' : 'Private' }}</p>
+
+    <!-- Members Button -->
+    <button class="btn btn-outline-primary mb-3" (click)="toggleMembers()">
+      {{ showMembers ? 'Hide Members' : 'Show Members' }}
+    </button>
+
+    <!-- Members Card -->
+    <div *ngIf="showMembers" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Members</h5>
+        <ul class="list-group">
+          <li *ngFor="let member of community.members" class="list-group-item">
+            {{ member.username }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Join Community Button -->
+    <button *ngIf="community.isPublic && isBoolean" class="btn btn-primary mb-3" (click)="joinCommunity()">
+      Join Community
+    </button>
+  </div>
+
+  <!-- Add this button below the community details section -->
+  <div class="mb-3">
+    <button class="btn btn-primary" routerLink="/discussion/{{ communityId }}">
+      <i class="bi bi-plus-lg"></i> Start a New Discussion
+    </button>
+  </div>
+
+  <!-- Discussions -->
+  <div class="mb-5">
+    <h3>Discussions</h3>
+    <div class="row">
+      <div *ngFor="let discussion of discussions" class="col-md-4 mb-4">
+        <div class="card shadow" (click)="navigateToDiscussion(discussion._id)">
+          <div class="card-body">
+            <h5 class="card-title">{{ discussion.title }}</h5>
+            <p class="card-text">{{ discussion.content }}</p>
+            <p class="text-muted">By {{ discussion.author.username }}</p>
+            <div class="d-flex justify-content-between">
+              <span class="badge bg-success">Upvotes: {{ discussion.upvotes }}</span>
+              <span class="badge bg-danger">Downvotes: {{ discussion.downvotes }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <div class="mb-5">
+    <h3>Shared Resources</h3>
+    <div class="row">
+      <div *ngFor="let resource of resources" class="col-md-4 mb-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title">{{ resource.title }}</h5>
+            <p class="card-text">Shared by {{ resource.sharedBy.username }}</p>
+            <div *ngIf="resource.type === 'file'">
+              <img [src]="'http://localhost:3000/' + resource.file" class="img-fluid" alt="Resource Image" />
+            </div>
+            <div *ngIf="resource.type === 'video'">
+              <video controls class="img-fluid">
+                <source [src]="resource.file" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div *ngIf="resource.type === 'link'">
+              <a [href]="resource.link" target="_blank">{{ resource.link }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

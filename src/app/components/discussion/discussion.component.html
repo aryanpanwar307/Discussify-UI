@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <!-- Discussion Details -->
+    <div *ngIf="discussion" class="mb-5">
+      <h2>{{ discussion.title }}</h2>
+      <p>{{ discussion.content }}</p>
+      <p class="text-muted">By {{ discussion.author.username }}</p>
+      <div class="d-flex gap-3 mb-3">
+        <button class="btn btn-success" (click)="upvote()">Upvote ({{ discussion.upvotes }})</button>
+        <button class="btn btn-danger" (click)="downvote()">Downvote ({{ discussion.downvotes }})</button>
+      </div>
+  
+      <!-- Comments -->
+      <h3>Comments</h3>
+      <div *ngFor="let comment of discussion.comments" class="card mb-3">
+        <div class="card-body">
+          <p class="card-text">{{ comment.content }}</p>
+          <p class="text-muted">By {{ comment.username }}</p>
+        </div>
+      </div>
+  
+      <!-- Add Comment -->
+      <div class="mb-3">
+        <textarea
+          class="form-control"
+          [(ngModel)]="newComment"
+          placeholder="Add a comment..."
+          rows="3"
+        ></textarea>
+      </div>
+      <button class="btn btn-primary" (click)="addComment()">Add Comment</button>
+    </div>
+  </div>

@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Update Profile</h2>
+            <form [formGroup]="updateProfileForm" (ngSubmit)="onSubmit()">
+              <!-- Username -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  formControlName="username"
+                  class="form-control"
+                  placeholder="Enter your username"
+                />
+                <div *ngIf="updateProfileForm.get('username')?.invalid && updateProfileForm.get('username')?.touched" class="text-danger">
+                  Username is required.
+                </div>
+              </div>
+  
+              <!-- Bio -->
+              <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea
+                  id="bio"
+                  formControlName="bio"
+                  class="form-control"
+                  placeholder="Enter your bio"
+                  rows="3"
+                ></textarea>
+              </div>
+  
+              <!-- Profile Picture -->
+              <div class="mb-3">
+                <label for="profilePicture" class="form-label">Profile Picture</label>
+                <input
+                  type="file"
+                  id="profilePicture"
+                  class="form-control"
+                  (change)="onFileChange($event)"
+                  accept="image/*"
+                />
+              </div>
+  
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary w-100" [disabled]="updateProfileForm.invalid">
+                Update Information
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

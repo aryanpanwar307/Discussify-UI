@@ -1,0 +1,56 @@
+/* Custom Styles for Sidebar */
+/* .offcanvas {
+  width: 250px;
+  background-color: #f8f9fa;
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.offcanvas-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.list-group-item {
+  border: none;
+  padding: 0.75rem 1.25rem;
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef;
+}
+
+.nav-link {
+  color: #343a40;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #f8f9fa;
+} */
+
+.bg-gradient-primary {
+  /* background: linear-gradient(135deg, #6a11cb, #2575fc); */
+  background: linear-gradient(135deg, #ff7eb3, #6a11cb, #2575fc);
+}
+
+.nav-link {
+  transition: all 0.3s;
+}
+.nav-link:hover {
+  transform: scale(1.1);
+}
+.offcanvas {
+  width: 280px;
+  transition: transform 0.3s ease-in-out;
+}
+.offcanvas-body ul li {
+  transition: all 0.3s ease-in-out;
+}
+.offcanvas-body ul li:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}

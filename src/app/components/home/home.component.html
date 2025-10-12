@@ -1,0 +1,125 @@
+<!-- <div class="container mt-5">
+    
+    <div class="mb-5">
+      <h2 class="mb-4">Your Communities</h2>
+      <div class="row">
+        <div *ngFor="let community of yourCommunities" class="col-md-4 mb-4">
+          <div class="card shadow" (click)="navigateToCommunity(community._id)">
+            <img [src]="'http://localhost:3000/' + community.banner" class="card-img-top" alt="Community Banner" />
+            <div class="card-body">
+              <h5 class="card-title">{{ community.name }}</h5>
+              <p class="card-text">{{ community.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+    <div class="mb-5">
+      <h2 class="mb-4">Discussions</h2>
+      <div class="row">
+        <div *ngFor="let discussion of discussions" class="col-md-4 mb-4">
+          <div class="card shadow" (click)="navigateToDiscussion(discussion._id)">
+            <div class="card-body">
+              <h5 class="card-title">{{ discussion.title }}</h5>
+              <p class="card-text">{{ discussion.content }}</p>
+              <p class="text-muted">By {{ discussion.author.username }}</p>
+              <div class="d-flex justify-content-between">
+                <span class="badge bg-success">Upvotes: {{ discussion.upvotes }}</span>
+                <span class="badge bg-danger">Downvotes: {{ discussion.downvotes }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+    <div class="mb-5">
+      <h2 class="mb-4">Other Communities</h2>
+      <div class="row">
+        <div *ngFor="let community of otherCommunities" class="col-md-4 mb-4">
+          <div class="card shadow" (click)="navigateToCommunity(community._id)">
+            <img  [src]="'http://localhost:3000/' + community.banner" class="card-img-top" alt="Community Banner" />
+            <div class="card-body">
+              <h5 class="card-title">{{ community.name }}</h5>
+              <p class="card-text">{{ community.description }}</p>
+              <p class="text-muted">
+                {{ community.isPublic ? 'Public' : 'Private' }}
+              </p>
+              <button
+                *ngIf="community.isPublic"
+                class="btn btn-primary w-100"
+                (click)="joinCommunity(community._id)"
+              >
+                Join Community
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div id="main">
+    <!-- Your Communities Section -->
+    <div class="section-box">
+      <h2 class="section-title text-gradient"><i class="bi bi-people-fill"></i> Your Communities</h2>
+      <p class="section-text">Stay connected with your favorite communities and engage in meaningful discussions.</p>
+      <div class="row">
+        <div *ngFor="let community of yourCommunities" class="col-md-4 mb-4">
+          <div class="card fixed-card shadow-lg border-0 hover-scale" (click)="navigateToCommunity(community._id)">
+            <img [src]="'http://localhost:3000/' + community.banner" class="card-img-top fixed-img rounded-top" alt="Community Banner" />
+            <div class="card-body">
+              <h5 class="card-title text-accent"><i class="bi bi-chat-dots-fill"></i> {{ community.name }}</h5>
+              <p class="card-text">{{ community.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Trending Discussions -->
+    <div class="section-box">
+      <h2 class="section-title text-gradient"><i class="bi bi-fire"></i> Trending Discussions</h2>
+      <p class="section-text">Join the hottest conversations happening now!</p>
+      <div class="row">
+        <div *ngFor="let discussion of discussions" class="col-md-4 mb-4">
+          <div class="card fixed-card shadow-lg border-0 hover-scale" (click)="navigateToDiscussion(discussion._id)">
+            <div class="card-body">
+              <h5 class="card-title text-accent"><i class="bi bi-lightning-fill"></i> {{ discussion.title }}</h5>
+              <p class="card-text">{{ discussion.content }}</p>
+              <p class="text-muted">By <i class="bi bi-person-circle"></i> {{ discussion.author.username }}</p>
+              <div class="d-flex justify-content-between">
+                <span class="badge bg-success"><i class="bi bi-hand-thumbs-up-fill"></i> {{ discussion.upvotes }}</span>
+                <span class="badge bg-danger"><i class="bi bi-hand-thumbs-down-fill"></i> {{ discussion.downvotes }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Explore New Communities -->
+    <div class="section-box">
+      <h2 class="section-title text-gradient"><i class="bi bi-globe"></i> Explore New Communities</h2>
+      <p class="section-text">Discover and join communities that match your interests.</p>
+      <div class="row">
+        <div *ngFor="let community of otherCommunities" class="col-md-4 mb-4">
+          <div class="card fixed-card shadow-lg border-0 hover-scale" (click)="navigateToCommunity(community._id)">
+            <img [src]="'http://localhost:3000/' + community.banner" class="card-img-top fixed-img rounded-top" alt="Community Banner" />
+            <div class="card-body">
+              <h5 class="card-title text-accent"><i class="bi bi-shield-lock-fill"></i> {{ community.name }}</h5>
+              <p class="card-text">{{ community.description }}</p>
+              <p class="text-muted"><i class="bi bi-lock-fill"></i> {{ community.isPublic ? 'Public' : 'Private' }}</p>
+              <button *ngIf="community.isPublic" class="btn btn-accent w-100 animate__animated animate__pulse" (click)="joinCommunity(community._id)">
+                <i class="bi bi-person-plus-fill"></i> Join Community
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
