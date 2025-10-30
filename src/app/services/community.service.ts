@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Community } from '../models/community.model';
+import { API_URL } from '../config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommunityService {
-  private apiUrl = 'http://localhost:3000/api/communities';
+  private apiUrl = API_URL + '/communities';
 
   constructor(private http: HttpClient) {}
 

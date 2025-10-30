@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user.model';
+import { API_URL } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   private isAdminUser = false
   private currentUser = new BehaviorSubject<User | null>(null);
 
-  private apiUrl = 'http://localhost:3000/api/auth'
+  private apiUrl = API_URL + '/auth';
   constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, password: string): any {
