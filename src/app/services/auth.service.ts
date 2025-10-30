@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   fetchUserRole(): void {
-    this.http.get<any>('http://localhost:3000/api/profile').subscribe({
+    this.http.get<any>(`${this.apiUrl}/profile`).subscribe({
       next: (response) => {
         console.log(response, 'response' ,  response?.data.isAdmin)
       

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { API_URL } from '../../config';
 
 interface Community {
   _id: string;
@@ -36,7 +37,7 @@ export class UpdateCommunityComponent implements OnInit {
   }
 
   fetchUserCommunities(): void {
-    this.http.get<Community[]>('http://localhost:3000/api/profile/getCommunities').subscribe({
+  this.http.get<Community[]>(`${API_URL}/profile/getCommunities`).subscribe({
       next: (response) => {
         this.communities = response;
       },
@@ -53,7 +54,7 @@ export class UpdateCommunityComponent implements OnInit {
 
     // Update the selected community
     this.http
-      .put(`http://localhost:3000/api/communities/${communityId}`, {
+  .put(`${API_URL}/communities/${communityId}`, {
         name,
         description,
         isPublic: isPublic === 'true',

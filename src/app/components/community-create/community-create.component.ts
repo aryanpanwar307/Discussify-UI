@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { API_URL } from '../../config';
 
 @Component({
   selector: 'app-create-community',
@@ -36,7 +37,7 @@ export class CreateCommunityComponent {
     const formData = new FormData();
     formData.append('banner', this.bannerFile);
 
-    this.http.post(`http://localhost:3000/api/communities/${communityId}/banner`, formData, { headers }).subscribe({
+  this.http.post(`${API_URL}/communities/${communityId}/banner`, formData, { headers }).subscribe({
       next: () => {
         this.isBannerUploaded = true;
         alert('Banner uploaded successfully!');
@@ -55,7 +56,7 @@ export class CreateCommunityComponent {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
     // Create the community
-    this.http.post<{ community: any }>('http://localhost:3000/api/communities', {
+  this.http.post<{ community: any }>(`${API_URL}/communities`, {
       name,
       description,
       isPublic: isPublic === 'true', // Convert to boolean

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { API_URL } from '../../config';
 
 interface Resource {
   _id: string;
@@ -55,7 +56,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   fetchAllResources(): void {
-    this.http.get<{data:Resource[]}>('http://localhost:3000/api/resources').subscribe({
+  this.http.get<{data:Resource[]}>(`${API_URL}/resources`).subscribe({
       next: (response) => {
         this.resources = response.data;
       },
@@ -68,7 +69,7 @@ export class AdminPanelComponent implements OnInit {
   fetchAllDiscussions(): void {
     const token = localStorage.getItem('token')
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.get<{data:Discussion[]}>('http://localhost:3000/api/discussions',{headers}).subscribe({
+  this.http.get<{data:Discussion[]}>(`${API_URL}/discussions`,{headers}).subscribe({
       next: (response) => {
         this.discussions = response.data;
       },
@@ -81,7 +82,7 @@ export class AdminPanelComponent implements OnInit {
   fetchAllUsers(): void {
     const token = localStorage.getItem('token')
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.get<{data:User[]}>('http://localhost:3000/api/profile/allProfiles', {headers}).subscribe({
+  this.http.get<{data:User[]}>(`${API_URL}/profile/allProfiles`, {headers}).subscribe({
       next: (response) => {
         console.log(response)
         this.users = response.data;
@@ -93,7 +94,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   fetchAllCommunities(): void {
-    this.http.get<{data:Community[]}>('http://localhost:3000/api/communities').subscribe({
+  this.http.get<{data:Community[]}>(`${API_URL}/communities`).subscribe({
       next: (response) => {        
         this.communities = response.data;
 
@@ -105,7 +106,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   deleteResource(resourceId: string): void {
-    this.http.delete(`http://localhost:3000/api/admin/resources`, { body: { resourceId } }).subscribe({
+  this.http.delete(`${API_URL}/admin/resources`, { body: { resourceId } }).subscribe({
       next: () => {
         alert('Resource deleted successfully!');
         this.fetchAllResources(); // Refresh resources list
@@ -146,7 +147,7 @@ export class AdminPanelComponent implements OnInit {
     const token = localStorage.getItem('token')
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
     this.http
-      .delete('http://localhost:3000/api/admin/discussions', {
+      .delete(`${API_URL}/admin/discussions`, {
         headers,
         body: { discussionId: this.selectedDiscussionId, reason },
       })
@@ -164,7 +165,7 @@ export class AdminPanelComponent implements OnInit {
 
 
   banUser(userId: string): void {
-    this.http.post('http://localhost:3000/api/admin/ban', { userId }).subscribe({
+  this.http.post(`${API_URL}/admin/ban`, { userId }).subscribe({
       next: () => {
         alert('User banned successfully!');
         this.fetchAllUsers(); // Refresh users list

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { API_URL } from '../../config';
 
 interface Notification {
   _id: string;
@@ -27,7 +28,7 @@ export class NotificationsComponent implements OnInit {
   fetchNotifications(): void {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.get<{data:Notification[]}>('http://localhost:3000/api/notifications', { headers }).subscribe({
+  this.http.get<{data:Notification[]}>(`${API_URL}/notifications`, { headers }).subscribe({
       next: (response) => {
         this.notifications = response.data;
       },
@@ -40,7 +41,7 @@ export class NotificationsComponent implements OnInit {
   markAsRead(notificationId: string): void {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.put(`http://localhost:3000/api/notifications/${notificationId}/mark-as-read`, {}, { headers }).subscribe({
+  this.http.put(`${API_URL}/notifications/${notificationId}/mark-as-read`, {}, { headers }).subscribe({
       next: () => {
         // Update the notification's isRead status locally
         const notification = this.notifications.find((n) => n._id === notificationId);
