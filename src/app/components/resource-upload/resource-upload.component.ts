@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { API_URL } from '../../config';
 
 interface Community {
   _id: string;
@@ -35,7 +36,7 @@ export class ResourceUploadComponent implements OnInit {
   }
 
   fetchUserCommunities(): void {
-    this.http.get<{ data: Community[] }>('http://localhost:3000/api/communities').subscribe({
+  this.http.get<{ data: Community[] }>(`${API_URL}/communities`).subscribe({
       next: (response) => {
         this.communities = response.data;
       },
@@ -75,7 +76,7 @@ export class ResourceUploadComponent implements OnInit {
 
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.post('http://localhost:3000/api/resources', formData, {headers}).subscribe({
+  this.http.post(`${API_URL}/resources`, formData, {headers}).subscribe({
       next: () => {
         alert('Resource uploaded successfully!');
         this.router.navigate(['/home']);

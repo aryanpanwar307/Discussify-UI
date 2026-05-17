@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { API_URL } from '../../config';
 
 @Component({
   selector: 'app-create-discussion',
@@ -35,7 +36,7 @@ export class CreateDiscussionComponent implements OnInit {
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
     // Create a new discussion
     this.http
-      .post('http://localhost:3000/api/discussions', {
+      .post(`${API_URL}/discussions`, {
         title,
         content,
         communityId: this.communityId,

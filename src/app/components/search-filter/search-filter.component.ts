@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from '../../config';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 interface Community {
@@ -54,7 +55,7 @@ export class SearchFilterComponent implements OnInit {
 
   fetchAllData(): void {
     // Fetch all communities
-    this.http.get<{data:Community[]}>('http://localhost:3000/api/communities').subscribe({
+    this.http.get<{data:Community[]}>(`${API_URL}/communities`).subscribe({
       next: (response) => {
         this.allCommunities = response.data;
       },
@@ -64,7 +65,7 @@ export class SearchFilterComponent implements OnInit {
     });
 
     // Fetch all discussions
-    this.http.get<{data:Discussion[]}>('http://localhost:3000/api/discussions').subscribe({
+    this.http.get<{data:Discussion[]}>(`${API_URL}/discussions`).subscribe({
       next: (response) => {
         this.allDiscussions = response.data;
       },
@@ -74,7 +75,7 @@ export class SearchFilterComponent implements OnInit {
     });
 
     // Fetch all resources
-    this.http.get<{data:Resource[]}>('http://localhost:3000/api/resources').subscribe({
+    this.http.get<{data:Resource[]}>(`${API_URL}/resources`).subscribe({
       next: (response) => {
         this.allResources = response.data;
       },

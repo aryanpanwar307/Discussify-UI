@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { API_URL } from '../../config';
 
 interface Discussion {
   _id: string;
@@ -31,7 +32,7 @@ export class DiscussionComponent implements OnInit {
   }
 
   fetchDiscussionDetails(): void {
-    this.http.get<{data:Discussion}>(`http://localhost:3000/api/discussions/${this.discussionId}/details`).subscribe({
+  this.http.get<{data:Discussion}>(`${API_URL}/discussions/${this.discussionId}/details`).subscribe({
       next: (response) => {
         this.discussion = response.data;
       },
@@ -46,7 +47,7 @@ export class DiscussionComponent implements OnInit {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
     this.http
-      .post(`http://localhost:3000/api/discussions/${this.discussionId}/comment`, { content: this.newComment },{headers})
+  .post(`${API_URL}/discussions/${this.discussionId}/comment`, { content: this.newComment },{headers})
       .subscribe({
         next: () => {
           this.newComment = '';
@@ -61,7 +62,7 @@ export class DiscussionComponent implements OnInit {
   upvote(): void {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.post(`http://localhost:3000/api/discussions/${this.discussionId}/upvote`, {}, {headers}).subscribe({
+  this.http.post(`${API_URL}/discussions/${this.discussionId}/upvote`, {}, {headers}).subscribe({
       next: () => {
         this.fetchDiscussionDetails(); // Refresh discussion details
       },
@@ -74,7 +75,7 @@ export class DiscussionComponent implements OnInit {
   downvote(): void {
     const token = localStorage.getItem('token')
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.post(`http://localhost:3000/api/discussions/${this.discussionId}/downvote`, {}, {headers}).subscribe({
+  this.http.post(`${API_URL}/discussions/${this.discussionId}/downvote`, {}, {headers}).subscribe({
       next: () => {
         this.fetchDiscussionDetails(); // Refresh discussion details
       },

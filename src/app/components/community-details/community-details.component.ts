@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { API_URL } from '../../config';
 
 interface Community {
   _id: string;
@@ -59,7 +60,7 @@ export class CommunityDetailsComponent implements OnInit {
   }
 
   fetchCommunityDetails(): void {
-    this.http.get<{ data: Community }>(`http://localhost:3000/api/communities/${this.communityId}`).subscribe({
+  this.http.get<{ data: Community }>(`${API_URL}/communities/${this.communityId}`).subscribe({
       next: (response) => {
         this.community = response.data;
       },
@@ -70,7 +71,7 @@ export class CommunityDetailsComponent implements OnInit {
   }
 
   fetchDiscussions(): void {
-    this.http.get<{data:Discussion[]}>(`http://localhost:3000/api/discussions/${this.communityId}`).subscribe({
+  this.http.get<{data:Discussion[]}>(`${API_URL}/discussions/${this.communityId}`).subscribe({
       next: (response) => {
         this.discussions = response.data;
       },
@@ -82,7 +83,7 @@ export class CommunityDetailsComponent implements OnInit {
   }
 
   fetchResources(): void {
-    this.http.get<{data:Resource[]}>(`http://localhost:3000/api/resources/${this.communityId}`).subscribe({
+  this.http.get<{data:Resource[]}>(`${API_URL}/resources/${this.communityId}`).subscribe({
       next: (response) => {
         this.resources = response.data;
       },
@@ -93,7 +94,7 @@ export class CommunityDetailsComponent implements OnInit {
   }
 
   joinCommunity(): void {
-    this.http.post(`http://localhost:3000/api/communities/${this.communityId}/join`, {}).subscribe({
+  this.http.post(`${API_URL}/communities/${this.communityId}/join`, {}).subscribe({
       next: () => {
         alert('Joined community successfully!');
         this.fetchCommunityDetails(); // Refresh community details

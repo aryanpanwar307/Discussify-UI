@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { API_URL } from '../../config';
 import { Router } from '@angular/router';
 
 interface Community {
@@ -44,7 +45,7 @@ export class HomeComponent implements OnInit {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     // Step 1: Fetch user profile to get joined community IDs
-    this.http.get<{ success: boolean; data: any }>('http://localhost:3000/api/profile', { headers })
+  this.http.get<{ success: boolean; data: any }>(`${API_URL}/profile`, { headers })
       .subscribe({
         next: (profileResponse) => {
           if (profileResponse.success && profileResponse.data?.communities?.length) {
@@ -54,7 +55,7 @@ export class HomeComponent implements OnInit {
 
             // Step 2: Fetch community details using the community IDs
             this.http.post<{ communities: Community[] }>(
-              'http://localhost:3000/api/profile/getCommunities',
+              `${API_URL}/profile/getCommunities`,
               { communityIds },
               { headers }
             ).subscribe({
@@ -82,7 +83,7 @@ export class HomeComponent implements OnInit {
   fetchDiscussions(): void {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.get<{ data: Discussion[] }>('http://localhost:3000/api/discussions', { headers }).subscribe({
+  this.http.get<{ data: Discussion[] }>(`${API_URL}/discussions`, { headers }).subscribe({
       next: (response) => {
         this.discussions = response.data;
       },
@@ -95,7 +96,7 @@ export class HomeComponent implements OnInit {
   fetchOtherCommunities(): void {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.get<{ success: boolean, data: Community[] }>('http://localhost:3000/api/communities', { headers }).subscribe({
+  this.http.get<{ success: boolean, data: Community[] }>(`${API_URL}/communities`, { headers }).subscribe({
       next: (response) => {
         // Filter out communities the user is already part of
         this.otherCommunities = response.data.filter(
@@ -111,7 +112,7 @@ export class HomeComponent implements OnInit {
   joinCommunity(communityId: string): void {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    this.http.post(`http://localhost:3000/api/communities/${communityId}/join`, {}, { headers }).subscribe({
+  this.http.post(`${API_URL}/communities/${communityId}/join`, {}, { headers }).subscribe({
       next: () => {
         alert('Joined community successfully!');
         this.fetchYourCommunities(); // Refresh your communities list
